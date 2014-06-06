@@ -1,0 +1,28 @@
+{
+	"name": "request-router",
+	"description": "HTTP/HTTPS request router for node.js web applications.",
+	"version": "0.1.0",
+	"author": "voltrue2 (Nobuyori Takahashi)",
+	"repositiory": {
+		"type": "git",
+		"url": "https://github.com/voltrue2/request-router"
+	},
+	"dependencies": {},
+	"devDependencies": {
+		"mocha": "1.20.1"
+	},
+	"engine": "node >= 0.10.20",
+	"license": "MIT",
+	"keywords": [
+		"URL",
+		"URI",
+		"web",
+		"HTTP",
+		"HTTPS",
+		"server",
+		"routing",
+		"rerouting",
+		"request"
+	],
+	"contributors": []
+}
