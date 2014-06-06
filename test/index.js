@@ -117,7 +117,7 @@ describe('request-router', function () {
 		assert.equal(routed.method, 'me');
 	});
 
-	it('can reroute from "/reroute/me/111/222/333/4.4/5,5" to "/routed/me"', function () {
+	it('can reroute from "/reroute/me/111/222/333/4.4/5,5" to "/routed/me/111/222/333/444/5,5"', function () {
 		var routed = router.parse('/reroute/me/111/222/333/4.4/5,5');
 		assert.equal(routed.controller, 'routed');
 		assert.equal(routed.method, 'me');
