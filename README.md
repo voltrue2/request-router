@@ -63,7 +63,7 @@ Sets rerouting rules.
 
 ### .parse(uri [string])
 
-Parsed the given URI and returns an object.
+Parses the given URI and returns an object.
 
 # Test
 
