@@ -13,6 +13,10 @@ function parse(uri) {
 
 	// if URI is root (/)
 	if (uri === '/') {
+		if (reroutes[uri]) {
+			// there is reroute
+			return parse(reroutes[uri]);
+		}
 		return createParsed(uri, null, null);
 	}	
 

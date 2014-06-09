@@ -154,4 +154,13 @@ describe('request-router', function () {
 		assert.equal(routed.params[4], '5,5');		
 	});
 
+	it('can rerout from "/" to "/hello/world"', function () {
+		router.setReroutes({
+			'/': '/hello/world'
+		});
+		var routed = router.parse('/');
+		assert.equal(routed.controller, 'hello');
+		assert.equal(routed.method, 'world');
+	});
+
 });
