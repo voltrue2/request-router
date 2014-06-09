@@ -67,7 +67,7 @@ function parse(uri) {
 
 function createParsed(controller, method, params) {
 	return {
-		uri: '/' + controller + (method ? '/' + method : ''),
+		uri: (controller === '/' ? controller : '/' + controller) + (method ? '/' + method : ''),
 		controller: controller || null,
 		method: method || null,
 		params: params || []

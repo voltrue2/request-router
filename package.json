@@ -1,7 +1,7 @@
 {
 	"name": "request-router",
 	"description": "HTTP/HTTPS request router for node.js web applications.",
-	"version": "0.1.1",
+	"version": "0.1.2",
 	"author": "voltrue2 (Nobuyori Takahashi)",
 	"repositiory": {
 		"type": "git",

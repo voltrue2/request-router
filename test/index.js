@@ -7,6 +7,11 @@ describe('request-router', function () {
 		'/reroute/me': '/routed/me'
 	});
 
+	it('can parse "/"', function () {
+		var routed = router.parse('/');
+		assert.equal(routed.uri, '/');
+	});
+
 	it('can parse "/aaa"', function () {
 		var routed = router.parse('/aaa');
 		assert.equal(routed.uri, '/aaa');
