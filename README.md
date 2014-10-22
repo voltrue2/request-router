@@ -55,7 +55,90 @@ var routed = router.parse('/reroute/me');
 */
 ```
 
+# Predefined Paramter Map
+
+`request-router` module allows you to predefine request paramters as a map for each request URI.
+
+Example 1:
+
+```
+var router = require('request-router');
+
+router.mapParams('/myController/myMethod/myParam1/myParam2');
+// the above code defines the parameters for the request URI /myController/myMethod with.
+// the parsed parameters will be named as myParam1 and myParam2.
+
+// parsing the in-coming request URI
+var parsed = router.parse('myController/myMethod/AAA/BBB');
+/* parsed routed object
+{
+	controller: 'myController',
+	method: 'myMethod',
+	params: [
+		'AAA',
+		'BBB'
+	],
+	mappedParams: {
+		myParam1: 'AAA',
+		myParam2: 'BBB'
+	}
+}
+*/
+```
+
+Example 2:
+
+```
+var router = require('request-router');
+
+router.mapParams('/myController/myMethod/myParam1/myParam2');
+
+// parsing the in-coming request URI
+var parsed = router.parse('myController/myMethod/AAA');
+/* parsed routed object
+{
+	controller: 'myController',
+	method: 'myMethod',
+	params: [
+		'AAA'
+	],
+	mappedParams: {
+		myParam1: 'AAA'
+	}
+}
+*/
+```
+
+Example 3:
+
+```
+var router = require('request-router');
+
+router.mapParams('/myController/myMethod/myParam1');
+
+// parsing the in-coming request URI
+var parsed = router.parse('myController/myMethod/AAA/BBB/CCC');
+/* parsed routed object
+{
+	controller: 'myController',
+	method: 'myMethod',
+	params: [
+		'AAA',
+		'BBB',
+		'CCC'
+	],
+	mappedParams: {
+		myParam1: 'AAA'
+	}
+}
+*/
+```
+
 # APIs
+
+### .mapParams(paramterMapDefinitionURI [string])
+
+Predefines parameters as a map for a request URI.
 
 ### .setReroutes(rerouteRules [object])
 

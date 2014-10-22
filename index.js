@@ -1,9 +1,26 @@
 // format: { "/aaa/bbb": "/ccc/ddd" } => this reroutes /aaa/bbb to /ccc/dddd
 var reroutes = {};
+// format: { "controller": "myController", "method": "myMethod", paramMap: [ "param1", "param2" ] }
+var paramMap = {};
+
+// mapParams('/myController/myMethod/param1/param2/'); => 
+// { "controller": "myController", "method": "myMethod", paramMap: [ "param1", "param2" ] }
+module.exports.mapParams = mapParams;
 
 module.exports.setReroutes = setReroutes;
 
 module.exports.parse = parse;
+
+function mapParams(uri) {
+	var parsed = parse(uri);
+	if (paramMap[parsed.controller] && paramMap[parsed.controller][parsed.method]) {
+		throw new Error('duplicateParameterMap');
+	}
+	if (!paramMap[parsed.controller]) {
+		paramMap[parsed.controller] = {};
+	}
+	paramMap[parsed.controller][parsed.method] = parsed.params;
+}
 
 function setReroutes(reroutesIn) {
 	reroutes = reroutesIn;
@@ -74,8 +91,21 @@ function createParsed(controller, method, params) {
 		uri: (controller === '/' ? controller : '/' + controller) + (method ? '/' + method : ''),
 		controller: controller || null,
 		method: method || null,
-		params: params || []
+		params: params || [],
+		mappedParams: createMappedParams(controller, method, params) || {}
 	};
+}
+
+function createMappedParams(controller, method, params) {
+	if (paramMap[controller] && paramMap[controller][method]) {
+		var mapList = paramMap[controller][method];
+		var map = {};
+		for (var i = 0, len = mapList.length; i < len; i++) {
+			map[mapList[i]] = params[i];
+		}
+		return map;
+	}
+	return null;
 }
 
 function getValue(value) {
