@@ -18,7 +18,8 @@ var routed = router(uri);
     "uri": "/aaa/bbb"
     "controller": "aaa",
     "method": "bbb",
-    "params": []
+    "params": [],
+    "mappedParams": {}
 }
 */
 ```
@@ -30,7 +31,8 @@ var routed2 = router(uri2);
     "uri": "/aaa/bbb"
     "controller": "aaa",
     "method": "bbb",
-    "params": [111, 222, 333]
+    "params": [111, 222, 333],
+    "mappedParams": {}
 }
 */
 ```
@@ -50,7 +52,8 @@ var routed = router.parse('/reroute/me');
     "uri": "/routed/you",
     "controller": "routed",
     "method": "you",
-    "params": []
+    "params": [],
+    "mappedParams": {}
 }
 */
 ```
