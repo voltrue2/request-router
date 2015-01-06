@@ -221,4 +221,18 @@ describe('request-router', function () {
 		assert.equal(routed.params.length, 4);
 	});
 
+	it('can route /?test=true/ correctly', function () {
+		router.setReroutes({});
+		var routed = router.parse('/?test=true/');
+		assert.equal(routed.controller, '/');
+		assert.equal(routed.method, null);
+	});
+
+	it('can route /?test=true correctly', function () {
+		router.setReroutes({});
+		var routed = router.parse('/?test=true/');
+		assert.equal(routed.controller, '/');
+		assert.equal(routed.method, null);
+	});
+
 });

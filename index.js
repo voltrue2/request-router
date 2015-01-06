@@ -28,6 +28,12 @@ function setReroutes(reroutesIn) {
 
 function parse(uri) {
 
+	// remove GET queries if present
+	var index = uri.indexOf('?');
+	if (index !== -1) {
+		uri = uri.substring(0, index);
+	}
+
 	// if URI is root (/)
 	if (uri === '/') {
 		if (reroutes[uri]) {
@@ -36,12 +42,6 @@ function parse(uri) {
 		}
 		return createParsed(uri, null, null);
 	}	
-
-	// remove GET queries if present
-	var index = uri.indexOf('?');
-	if (index !== -1) {
-		uri = uri.substring(0, index);
-	}
 	
 	// trim front slashes
 	if (uri[0] === '/') {
