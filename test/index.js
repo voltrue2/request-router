@@ -235,4 +235,30 @@ describe('request-router', function () {
 		assert.equal(routed.method, null);
 	});
 
+	it('can auto decode encoded URI', function () {
+		var str = '1 2---$3 日本語<html>';
+		var uri = '/encoded/uri/first/' + encodeURIComponent(str) + '/second';
+		var routed = router.parse(uri);
+		assert.equal(routed.controller, 'encoded');
+		assert.equal(routed.method, 'uri');
+		assert.equal(routed.params[0], 'first');
+		assert.equal(routed.params[1], str);
+		assert.equal(routed.params[2], 'second');
+	});
+
+	it('can auto decode encoded URI and map parameters', function () {
+		router.mapParams('/encoded/uri/one/two/three');
+		var str = '1 2---$3 日本語<html>';
+		var uri = '/encoded/uri/first/' + encodeURIComponent(str) + '/second';
+		var routed = router.parse(uri);
+		assert.equal(routed.controller, 'encoded');
+		assert.equal(routed.method, 'uri');
+		assert.equal(routed.params[0], 'first');
+		assert.equal(routed.params[1], str);
+		assert.equal(routed.params[2], 'second');
+		assert.equal(routed.mappedParams.one, 'first');
+		assert.equal(routed.mappedParams.two, str);
+		assert.equal(routed.mappedParams.three, 'second');
+	});
+
 });

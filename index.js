@@ -117,6 +117,9 @@ function getValue(value) {
 		} else {
 			value = parseFloat(value, 10);
 		}
+	} else {
+		// string
+		value = decodeURIComponent(value);
 	}
 	
 	return value;
